@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meu Projeto</title>
+
+  <style>
+   .cartao{
+    height: 200px;
+    width: 350px;
+    background-color: bisque;
+    margin-left: 45%;
+   }
+   #textoidiot{
+    margin-left: 100%;
+    display: none;
+    
+   }
+   .vai{
+    animation: rodar 3s linear;
+   }
+   #titulo{
+    text-align: center;
+    display: block;
+    margin-top: 20px;
+   }
+   #descricao{
+    margin-left: 20px;
+   }
+   
+   @keyframes rodar {
+    from{margin-left: 100%;}
+    to{margin-left: 1%;}
+   }
+  </style>
+  
+</head>
+<body>
+  <div class="cartao">
+    <h1 id="titulo">
+      Paulenda
+    </h1> </br>
+    <p id="descricao">
+      Esse é o meu cartão. Paulenda é o meu apelido, que eu mesmo me dei. Sim, é um pouco egocentrico mesmo.
+    </p>
+  </div>
+ 
+  <button id="idiot">
+    Botão da idiotice
+  </button>
+</br>
+  <p id="textoidiot">
+    Eu sou muito burro, slk
+  </p>
+
+
+  <script>
+        
+    let cartao = document.querySelector(".cartao")
+    let atv = true
+      document.querySelector(".cartao").addEventListener("click", ()=>{
+        if(atv){
+          cartao.style.backgroundColor = "brown"
+        }
+        else{
+          cartao.style.backgroundColor = "bisque"
+        }
+        atv = !atv
+      })
+
+
+      let textoidiot = document.querySelector("#textoidiot")
+      document.querySelector("#idiot").addEventListener("click", ()=>{
+        
+        document.querySelector("#textoidiot").style.display = "block"
+                
+        textoidiot.classList = "vai"
+        textoidiot.style.marginLeft = "1%"
+        
+          
+                  
+    })
+      
+  </script>
+</body>
+</html>
