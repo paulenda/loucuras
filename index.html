@@ -6,82 +6,201 @@
   <title>Meu Projeto</title>
 
   <style>
-   .cartao{
-    height: 200px;
-    width: 350px;
-    background-color: bisque;
-    margin-left: 45%;
-   }
-   #textoidiot{
-    margin-left: 100%;
-    display: none;
-    
-   }
-   .vai{
-    animation: rodar 3s linear;
-   }
-   #titulo{
-    text-align: center;
-    display: block;
-    margin-top: 20px;
-   }
-   #descricao{
-    margin-left: 20px;
-   }
-   
-   @keyframes rodar {
-    from{margin-left: 100%;}
-    to{margin-left: 1%;}
-   }
+    .titulo{
+      margin-left: 37%;
+    }
+    #respostas{
+      flex-direction: column;
+    }
+    #inicio{
+      background-color: aqua;
+      width: 200px;
+    }
+    #perguntas{
+      display: none;
+    }
   </style>
   
 </head>
 <body>
-  <div class="cartao">
-    <h1 id="titulo">
-      Paulenda
-    </h1> </br>
-    <p id="descricao">
-      Esse é o meu cartão. Paulenda é o meu apelido, que eu mesmo me dei. Sim, é um pouco egocentrico mesmo.
-    </p>
+  <div class="título">
+    <h2>
+      Quiz da abertura da mostra
+    </h2> 
   </div>
- 
-  <button id="idiot">
-    Botão da idiotice
-  </button>
-</br>
-  <p id="textoidiot">
-    Eu sou muito burro, slk
-  </p>
+  <div id="inicio">
+    <h3>
+      aperte aqui pra começar
+    </h3>
+  </div>
+  <div id="perguntas">
+    
+    <div id="alternativastotal">
+      <h4 id="pergunta">
 
+    </h4>
+      <p class="alternativass" id="alternativa1">
 
+    </p>
+    <p class="alternativass" id="alternativa2">
+
+    </p>
+    <p class="alternativass" id="alternativa3">
+
+    </p>
+    <p class="alternativass" id="alternativa4">
+
+    </p>
+    </div>
+    
+   
+  </div>
+
+  
   <script>
-        
-    let cartao = document.querySelector(".cartao")
-    let atv = true
-      document.querySelector(".cartao").addEventListener("click", ()=>{
-        if(atv){
-          cartao.style.backgroundColor = "brown"
-        }
-        else{
-          cartao.style.backgroundColor = "bisque"
-        }
-        atv = !atv
-      })
+    
+        let perguntas = [
+          {pergunta: "Qual o nome da primeira parte do teatro?",
+           alternativa1:"Viva a natureza", 
+           alternativa2: "A Terra Fala",
+           alternativa3:"De Guerra em Paz",
+          alternativa4:"De Paz em Guerra",
+          resposta:"A Terra Fala"},
+
+          {pergunta: "Quem é a diretora do espetáculo?",
+           alternativa1:"Juliana Paes", 
+           alternativa2: "Juliana Pires",
+           alternativa3:"Juliana do The Noite",
+          alternativa4:"Juliana",
+          resposta:"Não lembro o sobrenome dela kkkk"},
+
+          {pergunta: "Quantos blocos de dança tem a apresentação?",
+           alternativa1:"3 blocos", 
+           alternativa2: "infinitos",
+           alternativa3:"5 blocos",
+          alternativa4:"6 blocos",
+          resposta:"Quem foi para os ensaios sabe que não parecia ter fim"},
+
+          {pergunta: "Onde vai acontecer a abertura?",
+           alternativa1:"No Centro de Cultura",
+           resposta: "Muito bom!" 
+           },
+
+          {pergunta: "Em que data?",
+           alternativa1:"03/11/2025", 
+           resposta:"Isso mesmo!"
+           },
+           
+           {pergunta:"Acabou o quiz. Não importa quanto você acertou, o que de fato importa é a sua presença na apresentação. Te espero lá no Centro de Cultura!"}
+
+           
+
+        ]
 
 
-      let textoidiot = document.querySelector("#textoidiot")
-      document.querySelector("#idiot").addEventListener("click", ()=>{
+        let caixadeperguntas = document.querySelector("#pergunta") 
+        let alternativastotal = document.querySelector("#alternativastotal")
+     let alternativa1 = document.querySelector("#alternativa1")
+     let alternativa2 = document.querySelector("#alternativa2")
+     let alternativa3 = document.querySelector("#alternativa3")
+     let alternativa4 = document.querySelector("#alternativa4")
+     let inicio = document.querySelector("#inicio")
+          let alternativass = document.querySelectorAll(".alternativass")
+
+     let n = 0
+     let m = n-1
+
+     
+
+    
+           
+           document.querySelector("#inicio").addEventListener("click", ()=>{
+            document.querySelector("#inicio").style.width = "150px"
+            setTimeout(()=>{
+            document.querySelector("#inicio").style.width = "200px"
+
+            }, 100)
+            setTimeout(()=>{
+              document.querySelector("#inicio").style.display = "none"
+              document.querySelector("#perguntas").style.display = "block"
+            },
+          300)
+          mudarquestao()
+
+          }
+          )
+
+
+
+      
+      
+     function mudarquestao(){
+      caixadeperguntas.textContent = perguntas[n].pergunta
+      alternativa1.textContent = perguntas[n].alternativa1
+      alternativa2.textContent = perguntas[n].alternativa2 
+      alternativa3.textContent = perguntas[n].alternativa3 
+      alternativa4.textContent = perguntas[n].alternativa4
+      n+=1
+     }
+
+
+      alternativass.forEach(x => {
+
         
-        document.querySelector("#textoidiot").style.display = "block"
-                
-        textoidiot.classList = "vai"
-        textoidiot.style.marginLeft = "1%"
+        x.addEventListener("click",()=>{
+          inicio.style.backgroundColor = "white"
+          
+          inicio.textContent = perguntas[n-1].resposta
+          inicio.style.display = "block"
+          alternativastotal.style.display = "none"
+           if(n===0){
+          alternativa2.addEventListener("click", ()=>{
+            pontos+=1
+          })
+        }
+        else if(n===1){
+          alternativa4.addEventListener("click", ()=>{
+            pontos+=1
+        
+          })
+        }
+        else if(n===2){
+          alternativa2.addEventListener("click", ()=>{
+            pontos+=1
+          })
+        }
+        else if(n===4){
+          alternativa1.addEventListener("click", ()=>{
+            pontos+=1
+          })
+        
+        }
+        else if(n===5){
+          alternativa1.addEventListener("click", ()=>{
+            pontos+=1
+          })
+        }
+      
+          setTimeout(()=>{
+            mudarquestao()
+            alternativastotal.style.display = "block"
+            inicio.style.display = "none"
+          },1500)
         
           
-                  
-    })
+
+
+        })
+      })
+
       
+       
+      
+        console.log(pontos)
+      
+      
+
+
   </script>
 </body>
 </html>
